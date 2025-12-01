@@ -32,3 +32,24 @@
 .foot-ul li{
   font-size: 20px;
 } 
+.form-input{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  width: 300px;
+  margin: auto;
+}
+.form-input input{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.form-input button{
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
