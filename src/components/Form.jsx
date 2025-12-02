@@ -1,27 +1,75 @@
+import React from "react";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export function Form() {
   const [formData, setFormData] = useState(true);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    return (
-        <>
-        <form className="form-input">
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-            <p className="text-3xl font-bold">{formData ? "Sign up" : "Login"}</p>
+    if (!email.includes("@")) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+    if (name.trim().length === 0 && formData) {
+      toast.error("Name is required");
+      return;
+    }
+    if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
 
-            <input type="email" placeholder="Enter your email" />
+    if (formData) {
+      toast.success("Account created successfully");
+    } else {
+      toast.success("Logged in successfully");
+    }
+  };
 
-            {formData && <input type="text" placeholder="Enter your name" />}
+  return (
+    <>
+      <form className="form-input" onSubmit={handleSubmit}>
+        <p className="text-3xl font-bold">{formData ? "Sign up" : "Login"}</p>
 
-            <input type="text" placeholder="Enter your password"/>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          onChange = {(event) => setEmail(event.target.value)}
+        />
 
-            <button type="submit">Submit</button>
+        {formData && (
+          <input
+            type="text"
+            placeholder="Enter your name"
+            onChange = {(event) => setName(event.target.value)}
+          />
+        )}
 
-            <p>{formData ? "Already have an account ? " : "Do not hav an account ? "}  <span className="text-blue-800 cursor-pointer" onClick={()=> {
-                setFormData(!formData)
-            }}>{formData ? "Login" : "Sign Up3"}</span></p>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          onChange = {(event) => setPassword(event.target.value)}
+        />
 
-        </form>
-        </>
-    )
+        <button type="submit">Submit</button>
+
+        <p>
+          {formData ? "Already have an account? " : "Don't have an account? "}
+          <span
+            className="text-blue-800 cursor-pointer"
+            onClick = {() => setFormData(!formData)}
+          >
+            {formData ? "Login" : "Sign Up"}
+          </span>
+        </p>
+
+        <Toaster />
+      </form>
+    </>
+  );
 }

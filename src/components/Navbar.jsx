@@ -4,7 +4,7 @@ export function Navbar() {
   return (
     <>
     <div className="navbar">
-      <img src={Pic}  alt="" />
+      <img src={Pic}  alt="Logo" />
 
       <ul>
         <li> <a href="">Home</a></li>
