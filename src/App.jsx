@@ -10,8 +10,8 @@ function App() {
     <>
     <Navbar/>
     <Herosection time={"12:00"} date={"26 november"} year={"2025"}/>
-    <Footer copyright={"othermanconcept"} ownerright={"Mac-Anthony"}/>
     <Form/>
+    <Footer copyright={"othermanconcept"} ownerright={"Mac-Anthony"}/>
     </>                                    
   )
 } 
